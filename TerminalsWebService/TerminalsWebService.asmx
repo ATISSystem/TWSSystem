@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="VB" CodeBehind="TerminalsWebService.asmx.vb" Class="TerminalsWebService.TerminalsWebService" %>

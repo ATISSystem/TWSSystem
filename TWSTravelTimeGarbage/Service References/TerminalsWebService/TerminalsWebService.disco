@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://172.26.29.16:2010/TerminalsWebService.asmx?wsdl" docRef="http://172.26.29.16:2010/TerminalsWebService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://172.26.29.16:2010/TerminalsWebService.asmx" xmlns:q1="http://localhost/" binding="q1:TerminalsWebServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://172.26.29.16:2010/TerminalsWebService.asmx" xmlns:q2="http://localhost/" binding="q2:TerminalsWebServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

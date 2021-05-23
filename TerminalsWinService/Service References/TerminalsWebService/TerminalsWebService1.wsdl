@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/">
+      <s:element name="WebMethodSetNewSystemStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:SystemStatus" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="CommandValueData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="SystemStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="SystemIdle" />
+          <s:enumeration value="SystemGeneral" />
+          <s:enumeration value="SystemClearNobatsTrucksBufferAndSilent" />
+          <s:enumeration value="SystemFullSilent" />
+          <s:enumeration value="WinServiceSilent" />
+          <s:enumeration value="StpExistNobatSilent" />
+          <s:enumeration value="ExecuteNonOutputSqlCommand" />
+          <s:enumeration value="ExecuteWithOutputSqlCommand" />
+          <s:enumeration value="SendCurrentStatus" />
+          <s:enumeration value="SetWinServiceTimerInterval" />
+          <s:enumeration value="SetWinServiceSyncCounting" />
+          <s:enumeration value="GetWinServiceConnectionString" />
+          <s:enumeration value="GetWinServiceTerminalId" />
+          <s:enumeration value="GetWinServiceDateTime" />
+          <s:enumeration value="GetWinServiceComputerInfo" />
+          <s:enumeration value="GetExistNobatsInOtherData" />
+          <s:enumeration value="GetSTPsTblConfigurationData" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="WebMethodSetNewSystemStatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="WebMethodGetNewSystemStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalIdToChangeStatuss" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="CommandId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CommandValueData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodGetNewSystemStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WebMethodGetNewSystemStatusResult" type="tns:SystemStatus" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalIdToChangeStatuss" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="CommandId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CommandValueData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ACKSignalRecived">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalId" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ACKSignall" type="tns:ACKSignal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="AckNoteString" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LogSource" type="tns:LogSource" />
+            <s:element minOccurs="1" maxOccurs="1" name="TDB" type="tns:Database" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MethodName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SystemStatuss" type="tns:SystemStatus" />
+            <s:element minOccurs="1" maxOccurs="1" name="SyncCounting" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ACKSignal">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoneOrMsg" />
+          <s:enumeration value="AckError" />
+          <s:enumeration value="WebMethodSyncTrucks" />
+          <s:enumeration value="WebMethodSyncAll" />
+          <s:enumeration value="SystemStatusChangedToSystemGeneral" />
+          <s:enumeration value="SystemStatusChangedToSystemClearNobatsTrucksBufferAndSilent" />
+          <s:enumeration value="SystemStatusChangedToSystemFullSilent" />
+          <s:enumeration value="SystemStatusChangedToWinServiceSilent" />
+          <s:enumeration value="SystemStatusChangedToStpExistNobatSilent" />
+          <s:enumeration value="SystemStatusChangedToExecuteNonOutputSqlCommand" />
+          <s:enumeration value="SystemStatusChangedToExecuteWithOutputSqlCommand" />
+          <s:enumeration value="WinServiceStart" />
+          <s:enumeration value="WinServiceStop" />
+          <s:enumeration value="SendCurrentStatus" />
+          <s:enumeration value="SetWinServiceTimerInterval" />
+          <s:enumeration value="SetWinServiceSyncCounting" />
+          <s:enumeration value="GetWinServiceConnectionString" />
+          <s:enumeration value="GetWinServiceTerminalId" />
+          <s:enumeration value="GetWinServiceDateTime" />
+          <s:enumeration value="GetWinServiceComputerInfo" />
+          <s:enumeration value="GetExistNobatsInOtherData" />
+          <s:enumeration value="GetSTPsTblConfigurationData" />
+          <s:enumeration value="IdentifyTerminal" />
+          <s:enumeration value="ClientWinAppSettingSqlServerAdmin" />
+          <s:enumeration value="ClientWinAppServiceStart" />
+          <s:enumeration value="ServerWinServiceStart" />
+          <s:enumeration value="ServerWinServiceStop" />
+          <s:enumeration value="ServerWinServiceGarbageTimerElapsed" />
+          <s:enumeration value="ServerWinAppCreateTerminal" />
+          <s:enumeration value="ClientWinReportAppTimerStart" />
+          <s:enumeration value="ClientWinReportAppPassOk" />
+          <s:enumeration value="CenterControlChangeSystemStatus" />
+          <s:enumeration value="BarnamehOnLineDelNobat" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="LogSource">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="ServerWinApplication" />
+          <s:enumeration value="ServerWinService" />
+          <s:enumeration value="ServerWebService" />
+          <s:enumeration value="ClientWinService" />
+          <s:enumeration value="ClientWinApplication" />
+          <s:enumeration value="ClientWebApplication" />
+          <s:enumeration value="ClientWinApplicationReporting" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Database">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="TDBClient" />
+          <s:enumeration value="TDBServer" />
+          <s:enumeration value="LocalSystem" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ACKSignalRecivedResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="WebMethodSyncTrucks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalID" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientNewTrucks">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodSyncTrucksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebMethodSyncTrucksResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodSyncAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalID" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientNewNobats">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncNobats">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncTrucks">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncTerminals">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodSyncAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncNobats">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncTrucks">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncTerminals">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodIdentifyTerminal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdentifyCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodIdentifyTerminalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WebMethodIdentifyTerminalResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodCreateNewterminal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TerminalName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdentifyCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodCreateNewterminalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdentifyCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodTerminalIdFromTerminalName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TerminalName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodTerminalIdFromTerminalNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WebMethodTerminalIdFromTerminalNameResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodLoggingReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateAndTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodLoggingReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WebMethodLoggingReportResult" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodGetTruckTrace">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pelak" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serial" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalRec" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodGetTruckTraceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WebMethodGetTruckTraceResult" type="tns:TruckTrace" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="TruckTrace">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="NoPelakSerialFound" />
+          <s:enumeration value="NoRecordFound" />
+          <s:enumeration value="OK" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="WebMethodGetLastNobatInOnlineifExist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pelak" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serial" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="NobatDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodGetLastNobatInOnlineifExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WebMethodGetLastNobatInOnlineifExistResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="NobatDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodCurrentShamsiDate">
+        <s:complexType />
+      </s:element>
+      <s:element name="WebMethodCurrentShamsiDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebMethodCurrentShamsiDateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodCurrentTime">
+        <s:complexType />
+      </s:element>
+      <s:element name="WebMethodCurrentTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebMethodCurrentTimeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodUserAuthentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodUserAuthenticationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WebMethodUserAuthenticationResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodDelNobatBarnameOnline">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="SyncTerminalID" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pelak" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serial" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodDelNobatBarnameOnlineResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="WebMethodDelNobatUserRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TerminalID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="SyncTerminalID" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pelak" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serial" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebMethodDelNobatUserRequestResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="WebMethodSetNewSystemStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodSetNewSystemStatus" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodSetNewSystemStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodSetNewSystemStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodGetNewSystemStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodGetNewSystemStatus" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodGetNewSystemStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodGetNewSystemStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ACKSignalRecivedSoapIn">
+    <wsdl:part name="parameters" element="tns:ACKSignalRecived" />
+  </wsdl:message>
+  <wsdl:message name="ACKSignalRecivedSoapOut">
+    <wsdl:part name="parameters" element="tns:ACKSignalRecivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodSyncTrucksSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodSyncTrucks" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodSyncTrucksSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodSyncTrucksResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodSyncAllSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodSyncAll" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodSyncAllSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodSyncAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodIdentifyTerminalSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodIdentifyTerminal" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodIdentifyTerminalSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodIdentifyTerminalResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodCreateNewterminalSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodCreateNewterminal" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodCreateNewterminalSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodCreateNewterminalResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodTerminalIdFromTerminalNameSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodTerminalIdFromTerminalName" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodTerminalIdFromTerminalNameSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodTerminalIdFromTerminalNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodLoggingReportSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodLoggingReport" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodLoggingReportSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodLoggingReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodGetTruckTraceSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodGetTruckTrace" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodGetTruckTraceSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodGetTruckTraceResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodGetLastNobatInOnlineifExistSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodGetLastNobatInOnlineifExist" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodGetLastNobatInOnlineifExistSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodGetLastNobatInOnlineifExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodCurrentShamsiDateSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodCurrentShamsiDate" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodCurrentShamsiDateSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodCurrentShamsiDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodCurrentTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodCurrentTime" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodCurrentTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodCurrentTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodUserAuthenticationSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodUserAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodUserAuthenticationSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodUserAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodDelNobatBarnameOnlineSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodDelNobatBarnameOnline" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodDelNobatBarnameOnlineSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodDelNobatBarnameOnlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodDelNobatUserRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:WebMethodDelNobatUserRequest" />
+  </wsdl:message>
+  <wsdl:message name="WebMethodDelNobatUserRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:WebMethodDelNobatUserRequestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TerminalsWebServiceSoap">
+    <wsdl:operation name="WebMethodSetNewSystemStatus">
+      <wsdl:input message="tns:WebMethodSetNewSystemStatusSoapIn" />
+      <wsdl:output message="tns:WebMethodSetNewSystemStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetNewSystemStatus">
+      <wsdl:input message="tns:WebMethodGetNewSystemStatusSoapIn" />
+      <wsdl:output message="tns:WebMethodGetNewSystemStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ACKSignalRecived">
+      <wsdl:input message="tns:ACKSignalRecivedSoapIn" />
+      <wsdl:output message="tns:ACKSignalRecivedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodSyncTrucks">
+      <wsdl:input message="tns:WebMethodSyncTrucksSoapIn" />
+      <wsdl:output message="tns:WebMethodSyncTrucksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodSyncAll">
+      <wsdl:input message="tns:WebMethodSyncAllSoapIn" />
+      <wsdl:output message="tns:WebMethodSyncAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodIdentifyTerminal">
+      <wsdl:input message="tns:WebMethodIdentifyTerminalSoapIn" />
+      <wsdl:output message="tns:WebMethodIdentifyTerminalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCreateNewterminal">
+      <wsdl:input message="tns:WebMethodCreateNewterminalSoapIn" />
+      <wsdl:output message="tns:WebMethodCreateNewterminalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodTerminalIdFromTerminalName">
+      <wsdl:input message="tns:WebMethodTerminalIdFromTerminalNameSoapIn" />
+      <wsdl:output message="tns:WebMethodTerminalIdFromTerminalNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodLoggingReport">
+      <wsdl:input message="tns:WebMethodLoggingReportSoapIn" />
+      <wsdl:output message="tns:WebMethodLoggingReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetTruckTrace">
+      <wsdl:input message="tns:WebMethodGetTruckTraceSoapIn" />
+      <wsdl:output message="tns:WebMethodGetTruckTraceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetLastNobatInOnlineifExist">
+      <wsdl:input message="tns:WebMethodGetLastNobatInOnlineifExistSoapIn" />
+      <wsdl:output message="tns:WebMethodGetLastNobatInOnlineifExistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCurrentShamsiDate">
+      <wsdl:input message="tns:WebMethodCurrentShamsiDateSoapIn" />
+      <wsdl:output message="tns:WebMethodCurrentShamsiDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCurrentTime">
+      <wsdl:input message="tns:WebMethodCurrentTimeSoapIn" />
+      <wsdl:output message="tns:WebMethodCurrentTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodUserAuthentication">
+      <wsdl:input message="tns:WebMethodUserAuthenticationSoapIn" />
+      <wsdl:output message="tns:WebMethodUserAuthenticationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodDelNobatBarnameOnline">
+      <wsdl:input message="tns:WebMethodDelNobatBarnameOnlineSoapIn" />
+      <wsdl:output message="tns:WebMethodDelNobatBarnameOnlineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodDelNobatUserRequest">
+      <wsdl:input message="tns:WebMethodDelNobatUserRequestSoapIn" />
+      <wsdl:output message="tns:WebMethodDelNobatUserRequestSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TerminalsWebServiceSoap" type="tns:TerminalsWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WebMethodSetNewSystemStatus">
+      <soap:operation soapAction="http://localhost/WebMethodSetNewSystemStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetNewSystemStatus">
+      <soap:operation soapAction="http://localhost/WebMethodGetNewSystemStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ACKSignalRecived">
+      <soap:operation soapAction="http://localhost/ACKSignalRecived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodSyncTrucks">
+      <soap:operation soapAction="http://localhost/WebMethodSyncTrucks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodSyncAll">
+      <soap:operation soapAction="http://localhost/WebMethodSyncAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodIdentifyTerminal">
+      <soap:operation soapAction="http://localhost/WebMethodIdentifyTerminal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCreateNewterminal">
+      <soap:operation soapAction="http://localhost/WebMethodCreateNewterminal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodTerminalIdFromTerminalName">
+      <soap:operation soapAction="http://localhost/WebMethodTerminalIdFromTerminalName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodLoggingReport">
+      <soap:operation soapAction="http://localhost/WebMethodLoggingReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetTruckTrace">
+      <soap:operation soapAction="http://localhost/WebMethodGetTruckTrace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetLastNobatInOnlineifExist">
+      <soap:operation soapAction="http://localhost/WebMethodGetLastNobatInOnlineifExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCurrentShamsiDate">
+      <soap:operation soapAction="http://localhost/WebMethodCurrentShamsiDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCurrentTime">
+      <soap:operation soapAction="http://localhost/WebMethodCurrentTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodUserAuthentication">
+      <soap:operation soapAction="http://localhost/WebMethodUserAuthentication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodDelNobatBarnameOnline">
+      <soap:operation soapAction="http://localhost/WebMethodDelNobatBarnameOnline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodDelNobatUserRequest">
+      <soap:operation soapAction="http://localhost/WebMethodDelNobatUserRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TerminalsWebServiceSoap12" type="tns:TerminalsWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WebMethodSetNewSystemStatus">
+      <soap12:operation soapAction="http://localhost/WebMethodSetNewSystemStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetNewSystemStatus">
+      <soap12:operation soapAction="http://localhost/WebMethodGetNewSystemStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ACKSignalRecived">
+      <soap12:operation soapAction="http://localhost/ACKSignalRecived" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodSyncTrucks">
+      <soap12:operation soapAction="http://localhost/WebMethodSyncTrucks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodSyncAll">
+      <soap12:operation soapAction="http://localhost/WebMethodSyncAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodIdentifyTerminal">
+      <soap12:operation soapAction="http://localhost/WebMethodIdentifyTerminal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCreateNewterminal">
+      <soap12:operation soapAction="http://localhost/WebMethodCreateNewterminal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodTerminalIdFromTerminalName">
+      <soap12:operation soapAction="http://localhost/WebMethodTerminalIdFromTerminalName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodLoggingReport">
+      <soap12:operation soapAction="http://localhost/WebMethodLoggingReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetTruckTrace">
+      <soap12:operation soapAction="http://localhost/WebMethodGetTruckTrace" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodGetLastNobatInOnlineifExist">
+      <soap12:operation soapAction="http://localhost/WebMethodGetLastNobatInOnlineifExist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCurrentShamsiDate">
+      <soap12:operation soapAction="http://localhost/WebMethodCurrentShamsiDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodCurrentTime">
+      <soap12:operation soapAction="http://localhost/WebMethodCurrentTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodUserAuthentication">
+      <soap12:operation soapAction="http://localhost/WebMethodUserAuthentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodDelNobatBarnameOnline">
+      <soap12:operation soapAction="http://localhost/WebMethodDelNobatBarnameOnline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebMethodDelNobatUserRequest">
+      <soap12:operation soapAction="http://localhost/WebMethodDelNobatUserRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TerminalsWebService">
+    <wsdl:port name="TerminalsWebServiceSoap" binding="tns:TerminalsWebServiceSoap">
+      <soap:address location="http://172.26.29.16:2010/TerminalsWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TerminalsWebServiceSoap12" binding="tns:TerminalsWebServiceSoap12">
+      <soap12:address location="http://172.26.29.16:2010/TerminalsWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
